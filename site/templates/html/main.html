@@ -7,6 +7,20 @@
 	<title>Главная</title>
 </head>
 <body class="prep">
+	<header class="Header">
+		<div>
+			<span>Isotope Tests</span>	
+		</div>
+		<H2>
+			Найди свою тему ВКР!
+		</H2>
+		<div>
+			<div class="Header-image">
+				<div class="Header-image-filter"></div>
+			</div>		
+		</div>
+		
+	</header>
 	<section>
 		<div class="main">
 			<div class="main-head"> 
@@ -25,7 +39,7 @@
 						<a href="/cours">
 							<h3>courses[i].Name</h3>
 							<p>courses[i].Title</p>
-							<div style="background: url('../images/Mask Group 1.png') 50% 50% no-repeat;"></div>
+							<div style="background: url('/site/templates/images/Mask Group 1.png') 50% 50% no-repeat;"></div>
 							<span>Автор: prep[i].FIO</span>
 						</a>
 					</div>
@@ -48,5 +62,13 @@
 			<button type="submit">Найти</button>
 		</form>
 	</div>
+
+	<script>
+		let bg = document.querySelector('.Header-image');
+		window.addEventListener('mousemove', function(e) {
+		let x = e.clientX / window.innerWidth;
+		let y = e.clientY / window.innerHeight;  
+		bg.style.transform = 'translate(-' + x * 50 + 'px, -' + y * 50 + 'px)';});
+	</script>
 </body>
 </html>

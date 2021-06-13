@@ -15,6 +15,67 @@ header>img{
 	margin: 40px auto;
 }
 
+.Header{
+	box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	text-align: center;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 19px;
+	overflow: hidden;
+
+}
+.Header>div:first-child{
+	width: 100%;
+	height: 50px;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 50px;
+	box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+	
+}
+.Header>H2{
+	position: absolute;
+	display: block;
+	width: 100%;
+	z-index: 20;
+	font-size: 35px;
+	/*color: #343434;*/
+	color: #FFFFFF;
+	line-height: 300px;
+	text-align: center;
+}
+
+.Header>div:last-child{
+	height: 500px;
+    position: relative;
+    overflow: hidden;
+}
+
+.Header-image{
+	position: absolute;
+	z-index: 5;
+	background: url(https://avatars.mds.yandex.net/get-zen_doc/3704848/pub_5f358bdd8126a746e82464bb_5f358bf6288b143d6a3f6087/scale_1200) 50% 50% no-repeat;
+	background-size: cover;
+    width: 110%;
+	height: 110%;
+	transition: all 0.1s ease; 
+
+}
+
+.Header-image-filter{
+	position: absolute;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	background-color: #3D3BFF;
+	opacity: 0.9;
+}
+
 .menu{
 	position: fixed;
 	display: flex;

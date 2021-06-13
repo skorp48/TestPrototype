@@ -14,7 +14,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.Handle("/templates/", http.StripPrefix("/templates/", http.FileServer(http.Dir("./templates/"))))
+	http.Handle("/templates/", http.StripPrefix("/templates", http.FileServer(http.Dir("./site/templates/"))))
 	http.HandleFunc("/", Handler)
 	http.ListenAndServe(":5000", nil)
 }
