@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="../css/style.css">
-	<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/templates/css/style.css">
+	<link rel="shortcut icon" href="/templates/images/favicon.ico" type="image/x-icon">
 	<title>Главная</title>
 </head>
 <body class="prep">
@@ -22,11 +22,11 @@
 					{% endif %}
 				{% endif %}
 					<div class="main-content-elem">
-						<a href="/cours{{courses[i].ID}}">
-							<h3>{{courses[i].Name}}</h3>
-							<p>{{courses[i].Title}}</p>
+						<a href="/cours">
+							<h3>courses[i].Name</h3>
+							<p>courses[i].Title</p>
 							<div style="background: url('../images/Mask Group 1.png') 50% 50% no-repeat;"></div>
-							<span>Автор: {{prep[i].FIO}}</span>
+							<span>Автор: prep[i].FIO</span>
 						</a>
 					</div>
 				{% if i % 2 != 0%}
