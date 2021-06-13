@@ -116,7 +116,7 @@ header>img{
 	justify-content: space-between;
 	margin-top: 50px;
 	position: relative;
-	z-index: 10
+	z-index: 10;
 	width: 1160px;
 	min-height: 200px;
 }
