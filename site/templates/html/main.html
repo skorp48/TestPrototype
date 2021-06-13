@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+	<title>Главная</title>
+</head>
+<body class="prep">
+	<section>
+		<div class="main">
+			<div class="main-head"> 
+				<h2>Выберите направление</h2>
+				<button id="curs-find">Найти направление</button>
+			</div>
+			{% for i in range(0,len) %}
+				{% if i % 2 == 0%}
+					{% if len-i < 2%}
+						<div class="main-content solo">
+					{% else %}
+						<div class="main-content">
+					{% endif %}
+				{% endif %}
+					<div class="main-content-elem">
+						<a href="/cours{{courses[i].ID}}">
+							<h3>{{courses[i].Name}}</h3>
+							<p>{{courses[i].Title}}</p>
+							<div style="background: url({{ url_for('static', filename='images/Mask Group 1.png')}}) 50% 50% no-repeat;"></div>
+							<span>Автор: {{prep[i].FIO}}</span>
+						</a>
+					</div>
+				{% if i % 2 != 0%}
+				</div>
+				{% endif %}
+
+			{% endfor %}
+			
+		</div>
+	</section>
+	<div class="popup-window">
+		<div class="popup-head">
+			<h3>Поиск направления</h3>
+			<img id="close" src="../images/cross.png" alt="Крестик">
+		</div>
+		
+		<form action="/findC" method="post">
+			<input type="text" class="inp-text" name="find" placeholder="Введите текст" required>
+			<button type="submit">Найти</button>
+		</form>
+	</div>
+</body>
+</html>
