@@ -2,8 +2,19 @@ var application = new Vue({
     el : "#crudApp",
     data :{
         temp:"alex",
+        object: [] 
     },
     delimiters: ['[[', ']]'],
+    methods: {
+        fetchObject : function(){
+            axios.post('/fetchobj').then (function(response){
+                application.object = response.data;
+            });
+        }
+    },
+    created: function () {
+        this.fetchObject();
+    }
 })
 
     // параллакс
