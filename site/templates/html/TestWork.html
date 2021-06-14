@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/templates/css/style.css">
 	<link rel="shortcut icon" href="/templates/images/favicon.ico" type="image/x-icon">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<title>Тест</title>
 	<!-- <style>
 		.main-head-pic{
@@ -16,107 +18,110 @@
 		}
 	</style> -->
 </head>
-<body class="prep">
-	<header class="Header">
-		<div>
-			<span>Isotope Tests</span>	
-		</div>
-		<H2>
-			Найди свою тему ВКР!
-		</H2>
-		<div>
-			<div class="Header-image">
-				<div class="Header-image-filter"></div>
-			</div>		
-		</div>
-	</header>
-	<section>
-		<div class="main main-kurs-edit">
-			<div class="main-head"> 
-				<div>
-					<a href="coursTODO:">
-						<img src="/templates/images/Arrow 1.png" alt="">
-						Назад
-					</a>
-				</div>
-				<div class="main-head-pic">
+
+<div id = "TestWork">
+	<body class="prep">
+		<header class="Header">
+			<div>
+				<span>Isotope Tests</span>	
+			</div>
+			<H2>
+				Найди свою тему ВКР! [[temp]]
+			</H2>
+			<div>
+				<div class="Header-image">
+					<div class="Header-image-filter"></div>
+				</div>		
+			</div>
+		</header>
+		<section>
+			<div class="main main-kurs-edit">
+				<div class="main-head"> 
 					<div>
-						<h2>cours.NameTODO</h2>
+						<a href="coursTODO:">
+							<img src="/templates/images/Arrow 1.png" alt="">
+							Назад
+						</a>
+					</div>
+					<div class="main-head-pic">
+						<div>
+							<h2>cours.NameTODO</h2>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="main-head-bottom"> 
-				<div>
-					<h2>test.NameTODO</h2>
-				</div>
-			</div>
-			<div class="main-content-title">
-					<p>test.Title}}TODO</p>
-			</div>
-			{%if testactive == True%}
-				<form action="/testcalc" class="main" method="post">
-				{%for i in range(0, quelen)%}
-					<div class="main-question" id="questionTODOquestions[i].ID}}">
-						<h2>i+1}}TODO. TODOquestions[i].Name}}</h2>
-						{%if questions[i].Image != None%}
-							<!-- <img src="TODO url_for('static', filename=questions[i].Image)}}" alt="Картинка вопроса"> -->
-						{%endif%}
-						{%if questions[i].QuestionType == 1 %}
-							{%for oneans in answers[i]%}
-								<input class="inp-none" id="id_TODOquestions[i].ID}}_TODOoneans.ID}}"type="radio" name="TODOquestions[i].ID}}_A" value=TODOoneans.ID}}>
-								<label for="id_TODOquestions[i].ID}}_TODOoneans.ID}}" class="label-ans">
-									<div class="main-oneans">
-											<div>
-												{%if oneans.Number != None%}
-													<span>TODOoneans.Number}}. TODOoneans.Name}}</span>
-												{%else%}
-													<span>TODOoneans.Name}}</span>
-												{%endif%}
-											</div>
-									</div>
-								</label>
-							{%endfor%}
-						{%endif%}
-						{%if questions[i].QuestionType == 2 %}
-							{%for oneans in answers[i]%}
-								<input class="inp-none" id="id_TODOquestions[i].ID}}_TODOoneans.ID}}"type="checkbox" name="TODOquestions[i].ID}}_TODOoneans.ID}}" value=1>
-								<label for="id_TODOquestions[i].ID}}_TODOoneans.ID}}" class="label-ans">
-									<div class="main-oneans">
-											<div>
-												{%if oneans.Number != None%}
-													<span>TODOoneans.Number}}. TODOoneans.Name}}</span>
-												{%else%}
-													<span>TODOoneans.Name}}</span>
-												{%endif%}
-											</div>
-									</div>
-								</label>
-							{%endfor%}
-						{%endif%}
-						{%if questions[i].QuestionType == 3 %}
-							{%for oneans in answers[i]%}
-								<div>
-									<input class="inp-ans" type="text" name="TODOquestions[i].ID}}_TODOoneans.ID}}" placeholder="Введите ответ">
-								</div>
-							{%endfor%}
-						{%endif%}
-					</div>
-				{%endfor%}
-				<button type="submit">Завершить тест</button>
-				</form>
-			{%else%}
 				<div class="main-head-bottom"> 
-				<div>
-					<h2>Сейчас этот тест для вас недоступен</h2>
+					<div>
+						<h2>test.NameTODO</h2>
+					</div>
 				</div>
+				<div class="main-content-title">
+						<p>test.Title}}TODO</p>
+				</div>
+				{%if testactive == True%}
+					<form action="/testcalc" class="main" method="post">
+					{%for i in range(0, quelen)%}
+						<div class="main-question" id="questionTODOquestions[i].ID}}">
+							<h2>i+1}}TODO. TODOquestions[i].Name}}</h2>
+							{%if questions[i].Image != None%}
+								<!-- <img src="TODO url_for('static', filename=questions[i].Image)}}" alt="Картинка вопроса"> -->
+							{%endif%}
+							{%if questions[i].QuestionType == 1 %}
+								{%for oneans in answers[i]%}
+									<input class="inp-none" id="id_TODOquestions[i].ID}}_TODOoneans.ID}}"type="radio" name="TODOquestions[i].ID}}_A" value=TODOoneans.ID}}>
+									<label for="id_TODOquestions[i].ID}}_TODOoneans.ID}}" class="label-ans">
+										<div class="main-oneans">
+												<div>
+													{%if oneans.Number != None%}
+														<span>TODOoneans.Number}}. TODOoneans.Name}}</span>
+													{%else%}
+														<span>TODOoneans.Name}}</span>
+													{%endif%}
+												</div>
+										</div>
+									</label>
+								{%endfor%}
+							{%endif%}
+							{%if questions[i].QuestionType == 2 %}
+								{%for oneans in answers[i]%}
+									<input class="inp-none" id="id_TODOquestions[i].ID}}_TODOoneans.ID}}"type="checkbox" name="TODOquestions[i].ID}}_TODOoneans.ID}}" value=1>
+									<label for="id_TODOquestions[i].ID}}_TODOoneans.ID}}" class="label-ans">
+										<div class="main-oneans">
+												<div>
+													{%if oneans.Number != None%}
+														<span>TODOoneans.Number}}. TODOoneans.Name}}</span>
+													{%else%}
+														<span>TODOoneans.Name}}</span>
+													{%endif%}
+												</div>
+										</div>
+									</label>
+								{%endfor%}
+							{%endif%}
+							{%if questions[i].QuestionType == 3 %}
+								{%for oneans in answers[i]%}
+									<div>
+										<input class="inp-ans" type="text" name="TODOquestions[i].ID}}_TODOoneans.ID}}" placeholder="Введите ответ">
+									</div>
+								{%endfor%}
+							{%endif%}
+						</div>
+					{%endfor%}
+					<button type="submit">Завершить тест</button>
+					</form>
+				{%else%}
+					<div class="main-head-bottom"> 
+					<div>
+						<h2>Сейчас этот тест для вас недоступен</h2>
+					</div>
+				</div>
+				{%endif%}
 			</div>
-			{%endif%}
-		</div>
 
-	</section>
+		</section>
 
 
-</body>
+	</body>
+</div>
 <script>
 	let bg = document.querySelector('.Header-image');
 	window.addEventListener('mousemove', function(e) {
@@ -124,4 +129,5 @@
 	let y = e.clientY / window.innerHeight;  
 	bg.style.transform = 'translate(-' + x * 50 + 'px, -' + y * 50 + 'px)';});
 </script>
+<script src="/templates/js/TestWork.js"></script>
 </html>
