@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/templates/css/style.css">
 	<link rel="shortcut icon" href="/templates/images/favicon.ico" type="image/x-icon">
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<title>Главная</title>
 </head>
 <div id="crudApp">
-	<body  class="prep">
+
+	<body class="prep">
 
 		<header class="Header">
 			<div>
-				<span>Isotope Tests</span>	
+				<span>Isotope Tests</span>
 			</div>
 			<H2>
 				Найди свою тему ВКР! [[temp]]
@@ -21,36 +23,17 @@
 			<div>
 				<div class="Header-image">
 					<div class="Header-image-filter"></div>
-				</div>		
+				</div>
 			</div>
-			
+
 		</header>
 		<section>
 			<div class="main">
-				<div class="main-head"> 
+				<div class="main-head">
 					<h2>Выберите направление</h2>
 					<button id="curs-find">Найти направление</button>
 				</div>
-				{% for i in range(0,len) %}
-					{% if i % 2 == 0%}
-						{% if len-i < 2%}
-							<div class="main-content solo">
-						{% else %}
-							<div class="main-content">
-						{% endif %}
-					{% endif %}
-						<div class="main-content-elem">
-							<a href="/cours">
-								<h3>courses[i].Name</h3>
-								<p>courses[i].Title</p>
-								<div style="background: url('/templates/images/Mask Group 1.png') 50% 50% no-repeat;"></div>
-							</a>
-						</div>
-					{% if i % 2 != 0%}
-					</div>
-					{% endif %}
 
-				{% endfor %}
 				
 			</div>
 		</section>
@@ -59,15 +42,16 @@
 				<h3>Поиск направления</h3>
 				<img id="close" src="../images/cross.png" alt="Крестик">
 			</div>
-			
+
 			<form action="/findC" method="post">
 				<input type="text" class="inp-text" name="find" placeholder="Введите текст" required>
 				<button type="submit">Найти</button>
 			</form>
 		</div>
 
-		
+
 	</body>
 </div>
 <script src="/templates/js/main.js"></script>
+
 </html>

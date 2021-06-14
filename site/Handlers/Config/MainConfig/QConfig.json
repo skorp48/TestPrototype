@@ -3,12 +3,12 @@
         "Name": "ИВТ",
         "Description": "Информатика и вычислительная техника",
         "Image": "/templates/images/IVT.jpg",
-        "Link": "/Handlers/Config/Questions/IVTQuestions.json"
+        "Link": "IVTQuestions"
     },
     {
         "Name": "Психологический тест",
         "Description": "Психологический тест для определения темперамента",
         "Image": "/templates/images/Psihologia.jpg",
-        "Link": "/Handlers/Config/Questions/PsihologiaQuestions.json"
+        "Link": "PsihologiaQuestions"
     }
 ]
