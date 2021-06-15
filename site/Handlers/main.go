@@ -113,11 +113,22 @@ func SendObj(w http.ResponseWriter, r *http.Request) {
 	encoder.Encode(obj)
 }
 
+func testCalc(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+
+	temp, err := template.ParseFiles("site/templates/html/TestResult.html")
+	if err != nil {
+		fmt.Println(err)
+	}
+	temp.Execute(w, nil)
+}
+
 func main() {
 	http.Handle("/templates/", http.StripPrefix("/templates", http.FileServer(http.Dir("./site/templates/"))))
 	http.HandleFunc("/", Handler)
 	http.HandleFunc("/fetchobj", SendObj)
 	http.HandleFunc("/fetchQuestions", fetchQuestions)
 	http.HandleFunc("/Questions", TestWorkHand)
+	http.HandleFunc("/testcalc", testCalc)
 	http.ListenAndServe(":5000", nil)
 }
