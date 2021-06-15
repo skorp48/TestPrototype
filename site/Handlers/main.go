@@ -2,11 +2,14 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"html/template"
 	"net/http"
 	"os"
 )
+
+var Link *string
 
 // Тело запроса с сервера
 type requsetBody struct {
@@ -25,14 +28,44 @@ type QConfig struct {
 	Link        string `json:"Link"`
 }
 
+type Question struct {
+	Question     string   `json:"Question"`
+	QuestionType int      `json:"QuestionType"`
+	Image        string   `json:"Image"`
+	Answers      []string `json:"Answers"`
+	Weights      []int    `json:"Weights"`
+}
+
+type QuestionsList struct {
+	Name        string     `json:"Name"`
+	Description string     `json:"Description"`
+	Image       string     `json:"Image"`
+	Questions   []Question `json:"Questions"`
+}
+
+func decodeJSON(filename string, v interface{}) {
+	in, err := os.Open(filename)
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer in.Close()
+	decodeJson := json.NewDecoder(in)
+	err = decodeJson.Decode(&v)
+	if err != nil {
+
+		fmt.Println(err)
+	}
+}
+
 // Обработчик для отображения содержимого заметки.
-func showSnippet(w http.ResponseWriter, r *http.Request) {
+func showSnippet(w http.ResponseWriter, r *http.Request) (*string, error) {
 	q := r.URL.Query().Get("q")
 	if q == "" {
 		http.NotFound(w, r)
-		return
+		fmt.Println("123")
+		return nil, errors.New("Not Found")
 	}
-	fmt.Println(q)
+	return &q, nil
 }
 
 // Возварщает главную страницу
@@ -50,8 +83,20 @@ func TestWorkHand(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	showSnippet(w, r)
+	Link, err = showSnippet(w, r)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(*Link)
 	temp.Execute(w, nil)
+}
+
+func fetchQuestions(w http.ResponseWriter, r *http.Request) {
+	var obj QuestionsList
+
+	decodeJSON("site/Handlers/Config/Questions/IVTQuestions.json", &obj)
+	encoder := json.NewEncoder(w)
+	encoder.Encode(obj)
 }
 
 // Получает списко направлений из  JSON
@@ -62,18 +107,8 @@ func SendObj(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
-
-	in, err := os.Open("site/Handlers/Config/MainConfig/QConfig.json")
-	if err != nil {
-		fmt.Println(err)
-	}
-	defer in.Close()
-	decodeJson := json.NewDecoder(in)
 	var obj []QConfig
-	err = decodeJson.Decode(&obj)
-	if err != nil {
-		fmt.Println(err)
-	}
+	decodeJSON("site/Handlers/Config/MainConfig/QConfig.json", &obj)
 	encoder := json.NewEncoder(w)
 	encoder.Encode(obj)
 }
@@ -82,6 +117,7 @@ func main() {
 	http.Handle("/templates/", http.StripPrefix("/templates", http.FileServer(http.Dir("./site/templates/"))))
 	http.HandleFunc("/", Handler)
 	http.HandleFunc("/fetchobj", SendObj)
+	http.HandleFunc("/fetchQuestions", fetchQuestions)
 	http.HandleFunc("/Questions", TestWorkHand)
 	http.ListenAndServe(":5000", nil)
 }
