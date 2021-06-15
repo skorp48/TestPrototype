@@ -2,7 +2,7 @@ var application = new Vue({
     el : "#crudApp",
     data :{
         temp:"alex",
-        object: [] 
+        object: [],
     },
     delimiters: ['[[', ']]'],
     methods: {
@@ -10,6 +10,16 @@ var application = new Vue({
             axios.post('/fetchobj').then (function(response){
                 application.object = response.data;
             });
+        },
+        getObjsize: function(){
+            var len = 0;
+            if (this.object.length%2 == 1){
+                len = (this.object.length-1)/2;
+            }
+            else{
+                len =  this.object.length/2;
+            }
+            return len;
         }
     },
     created: function () {

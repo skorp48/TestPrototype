@@ -10,5 +10,11 @@
         "Description": "Психологический тест для определения темперамента",
         "Image": "/templates/images/Psihologia.jpg",
         "Link": "PsihologiaQuestions"
+    },
+    {
+        "Name": "Психологический тест2",
+        "Description": "Психологический тест для определения темперамента",
+        "Image": "/templates/images/Psihologia.jpg",
+        "Link": "PsihologiaQuestions"
     }
 ]

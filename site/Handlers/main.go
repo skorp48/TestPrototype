@@ -2,12 +2,13 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"net/http"
 	"os"
 )
 
-// Тело запроса с сервера 
+// Тело запроса с сервера
 type requsetBody struct {
 	Action    string `json:"action"`
 	FirstName string `json:"firstName"`
@@ -16,7 +17,7 @@ type requsetBody struct {
 	HiddenId  string `json:"hiddenId"`
 }
 
-// Структура для обработки JSON 
+// Структура для обработки JSON
 type QConfig struct {
 	Name        string `json:"Name"`
 	Description string `json:"Description"`
@@ -28,7 +29,7 @@ type QConfig struct {
 func Handler(w http.ResponseWriter, r *http.Request) {
 	temp, err := template.ParseFiles("site/templates/html/main.html")
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	temp.Execute(w, nil)
 }
@@ -37,7 +38,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 func TestWorkHand(w http.ResponseWriter, r *http.Request) {
 	temp, err := template.ParseFiles("site/templates/html/TestWork.html")
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	temp.Execute(w, nil)
 }
@@ -48,19 +49,19 @@ func SendObj(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	err := decoder.Decode(&rBody)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 
 	in, err := os.Open("site/Handlers/Config/MainConfig/QConfig.json")
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	defer in.Close()
 	decodeJson := json.NewDecoder(in)
 	var obj []QConfig
 	err = decodeJson.Decode(&obj)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	encoder := json.NewEncoder(w)
 	encoder.Encode(obj)
