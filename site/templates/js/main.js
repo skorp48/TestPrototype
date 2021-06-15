@@ -1,7 +1,6 @@
 var application = new Vue({
     el : "#crudApp",
     data :{
-        temp:"alex",
         object: [],
         soloEl: false
     },
