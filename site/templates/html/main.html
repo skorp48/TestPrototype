@@ -35,29 +35,29 @@
 				</div>
 
 				<template v-for="i in getObjsize()">
-					<div v-if="object.length-(i-1)<2" class="main-content solo">
+					<div v-if="soloEl && i==getObjsize()" class="main-content solo">
 						<div class="main-content-elem">
-							<a href="/Questions">
-								<h3>[[object[i-1].Name]]</h3>
-								<p>[[object[i-1].Description]]</p>
-								<div v-bind:style="{backgroundImage: 'url('+object[i-1].Image+')', backgroundRepeat:'no-repeat', backgroundPosition: ['50%', '50%']}"></div>
+							<a v-bind:href="'/Questions?q='+object[(i*2)-2].Link">
+								<h3>[[object[(i*2)-2].Name]]</h3>
+								<p>[[object[(i*2)-2].Description]]</p>
+								<div v-bind:style="{backgroundImage: 'url('+object[(i*2)-2].Image+')', backgroundRepeat:'no-repeat', backgroundPosition: ['50%', '50%']}"></div>
 							</a>
 						</div>
 					</div>
-					<div v-if="object.length-(i-1)>=2" class="main-content">
+					<div v-if="(soloEl && i<getObjsize()) || !soloEl" class="main-content">
 						<div class="main-content-elem">
-							<a href="/Questions">
-								<h3>[[object[i-1].Name]]</h3>
-								<p>[[object[i-1].Description]]</p>
-								<div v-bind:style="{backgroundImage: 'url('+object[i-1].Image+')', backgroundRepeat:'no-repeat', backgroundPosition: ['50%', '50%']}"></div>
+							<a v-bind:href="'/Questions?q='+object[(i*2)-2].Link">
+								<h3>[[object[(i*2)-2].Name]]</h3>
+								<p>[[object[(i*2)-2].Description]]</p>
+								<div v-bind:style="{backgroundImage: 'url('+object[(i*2)-2].Image+')', backgroundRepeat:'no-repeat', backgroundPosition: ['50%', '50%']}"></div>
 							</a>
 						</div>
 
 						<div class="main-content-elem">
-							<a href="/Questions">
-								<h3>[[object[i].Name]]</h3>
-								<p>[[object[i].Description]]</p>
-								<div v-bind:style="{backgroundImage: 'url('+object[i].Image+')', backgroundRepeat:'no-repeat', backgroundPosition: ['50%', '50%']}"></div>
+							<a v-bind:href="'/Questions?q='+object[(i*2)-1].Link">
+								<h3>[[object[(i*2)-1].Name]]</h3>
+								<p>[[object[(i*2)-1].Description]]</p>
+								<div v-bind:style="{backgroundImage: 'url('+object[(i*2)-1].Image+')', backgroundRepeat:'no-repeat', backgroundPosition: ['50%', '50%']}"></div>
 							</a>
 						</div>
 					</div>

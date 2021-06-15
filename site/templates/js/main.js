@@ -3,6 +3,7 @@ var application = new Vue({
     data :{
         temp:"alex",
         object: [],
+        soloEl: false
     },
     delimiters: ['[[', ']]'],
     methods: {
@@ -14,7 +15,8 @@ var application = new Vue({
         getObjsize: function(){
             var len = 0;
             if (this.object.length%2 == 1){
-                len = (this.object.length-1)/2;
+                len = (this.object.length-1)/2+1;
+                this.soloEl = true;
             }
             else{
                 len =  this.object.length/2;

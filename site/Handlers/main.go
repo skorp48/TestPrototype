@@ -25,6 +25,16 @@ type QConfig struct {
 	Link        string `json:"Link"`
 }
 
+// Обработчик для отображения содержимого заметки.
+func showSnippet(w http.ResponseWriter, r *http.Request) {
+	q := r.URL.Query().Get("q")
+	if q == "" {
+		http.NotFound(w, r)
+		return
+	}
+	fmt.Println(q)
+}
+
 // Возварщает главную страницу
 func Handler(w http.ResponseWriter, r *http.Request) {
 	temp, err := template.ParseFiles("site/templates/html/main.html")
@@ -40,6 +50,7 @@ func TestWorkHand(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
+	showSnippet(w, r)
 	temp.Execute(w, nil)
 }
 
@@ -71,6 +82,6 @@ func main() {
 	http.Handle("/templates/", http.StripPrefix("/templates", http.FileServer(http.Dir("./site/templates/"))))
 	http.HandleFunc("/", Handler)
 	http.HandleFunc("/fetchobj", SendObj)
-	http.HandleFunc("/TestWork", TestWorkHand)
+	http.HandleFunc("/Questions", TestWorkHand)
 	http.ListenAndServe(":5000", nil)
 }
