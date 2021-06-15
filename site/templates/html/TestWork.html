@@ -7,16 +7,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<title>Тест</title>
-	<!-- <style>
-		.main-head-pic{
-			{% if cours.Image != None%}
-				background: url(cours.Image) 50% 50% no-repeat;
-			
-			{% else %}
-				background: url(images/Mask Group 1.png) 50% 50% no-repeat;
-			{% endif %}
-		}
-	</style> -->
 </head>
 
 <div id = "TestWork">
@@ -29,7 +19,7 @@
 				[[QuestionList.Name]]
 			</H2>
 			<div>
-				<div class="Header-image">
+				<div class="Header-image" v-bind:style="{backgroundImage: 'url('+QuestionList.Image+')'}">
 					<div class="Header-image-filter"></div>
 				</div>		
 			</div>
