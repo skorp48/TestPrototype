@@ -6,7 +6,7 @@
     [
         {
             "Question":"Выберите предпочитаемый язык програмирования",
-            "QuestionType":1,
+            "QuestionType":2,
             "Image": "",
             "Answers":
             [
@@ -70,7 +70,7 @@
         {
             "Question":"Любите ли вы пить кофе?",
             "QuestionType":1,
-            "Image": "",
+            "Image": "/templates/images/Coffee.jpg",
             "Answers":
             [
                 "Да",

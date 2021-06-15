@@ -16,10 +16,10 @@
 				<span>Isotope Tests</span>	
 			</div>
 			<H2>
-				[[QuestionList.Name]]
+				[[questionList.Name]]
 			</H2>
 			<div>
-				<div class="Header-image">
+				<div class="Header-image" v-bind:style="{backgroundImage: 'url('+questionList.Image+')'}">
 					<div class="Header-image-filter"></div>
 				</div>		
 			</div>
@@ -35,40 +35,36 @@
 					</div>
 				</div>
 				<div class="main-content-title">
-						<p>[[QuestionList.Description]]</p>
+						<p>[[questionList.Description]]</p>
 				</div>
 					<form action="/testcalc" class="main" method="post">
-						<template v-for="i in QuestLen()">				
+						<template v-for="(value,index) in questionList.Questions">				
 							<div class="main-question">
-								<h2>[[i]]. [[QuestionList.Questions[i-1].Question]]</h2>
-								<img v-bind:src="QuestionList.Questions[i-1].Image" alt="Картинка вопроса">
-								<template v-if="QuestionList.Questions[i-1].QuestionType == 1">
-									<template v-for="oneans in QuestionList.questions[i-1].Answers">
-										<input class="inp-none" v-bind:id="'Question'+(i-1)" type="radio" v-bind:name="'Question'+(i-1)" value="anscount">
-										<label v-bind:for="'Question'+(i-1)" class="label-ans">
+								<h2>[[index+1]]. [[value.Question]]</h2>
+								<img v-if="value.Image !=''" v-bind:src="value.Image" alt="Картинка вопроса">
+								<template v-if="value.QuestionType == 1">
+									<template v-for="(oneans, indexans) in value.Answers">
+										<input class="inp-none" v-bind:id="'Question'+index+indexans" type="radio" v-bind:name="'Question'+index" v-bind:value="indexans">
+										<label v-bind:for="'Question'+index+indexans" class="label-ans">
 											<div class="main-oneans">
 												<div>
-													<span>[[anscount]]. [[oneans]]</span>
-													[[anscount = anscount+1]]
+													<span>[[indexans+1]]. [[oneans]]</span>
 												</div>
 											</div>
 										</label>
 									</template>
-									[[anscount = 1]]
 								</template>
-								<template v-if="QuestionList.Questions[i-1].QuestionType == 2">
-									<template v-for="oneans in QuestionList.Questions[i-1].Answers">
-										<input class="inp-none" v-bind:id="'Question'+(i-1)" type="checkbox" v-bind:name="'Question'+(i-1)" value=1>
-										<label v-bind:for="'Question'+(i-1)" class="label-ans">
+								<template v-if="value.QuestionType == 2">
+									<template v-for="(oneans, indexans in value.Answers">
+										<input class="inp-none" v-bind:id="'Question'+index+indexans" type="checkbox" v-bind:name="'Question'+index+'_'+indexans" value=1>
+										<label v-bind:for="'Question'+index+indexans" class="label-ans">
 											<div class="main-oneans">
 												<div>
-													<span>[[anscount]]. [[oneans]]</span>
-													[[anscount = anscount+1]]
+													<span>[[indexans+1]]. [[oneans]]</span>
 												</div>
 											</div>
 										</label>
 									</template>
-									[[anscount = 1]]
 								</template>
 							</div>
 						</template>

@@ -94,7 +94,7 @@ func TestWorkHand(w http.ResponseWriter, r *http.Request) {
 func fetchQuestions(w http.ResponseWriter, r *http.Request) {
 	var obj QuestionsList
 
-	decodeJSON("site/Handlers/Config/Questions/IVTQuestions.json", &obj)
+	decodeJSON("site/Handlers/Config/Questions/"+*Link+".json", &obj)
 	encoder := json.NewEncoder(w)
 	encoder.Encode(obj)
 }
