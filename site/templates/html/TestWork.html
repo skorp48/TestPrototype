@@ -26,7 +26,7 @@
 				<span>Isotope Tests</span>	
 			</div>
 			<H2>
-				[[TODO]]
+				[[QuestionList.Name]]
 			</H2>
 			<div>
 				<div class="Header-image">
@@ -43,27 +43,17 @@
 							На главную
 						</a>
 					</div>
-					<div class="main-head-pic">
-						<div>
-							<h2>cours.NameTODO</h2>
-						</div>
-					</div>
-				</div>
-				<div class="main-head-bottom"> 
-					<div>
-						<h2>test.NameTODO</h2>
-					</div>
 				</div>
 				<div class="main-content-title">
-						<p>test.Title}}TODO</p>
+						<p>[[QuestionList.Description]]</p>
 				</div>
 					<form action="/testcalc" class="main" method="post">
 						<template v-for="i in QuestLen()">				
 							<div class="main-question">
-								<h2>[[i]]. questions[i-1].Question</h2>
-								<img v-bind:src="questions[i-1].Image" alt="Картинка вопроса">
-								<template v-if="questions[i-1].QuestionType == 1">
-									<template v-for="oneans in questions[i-1].Answers">
+								<h2>[[i]]. [[QuestionList.Questions[i-1].Question]]</h2>
+								<img v-bind:src="QuestionList.Questions[i-1].Image" alt="Картинка вопроса">
+								<template v-if="QuestionList.Questions[i-1].QuestionType == 1">
+									<template v-for="oneans in QuestionList.questions[i-1].Answers">
 										<input class="inp-none" v-bind:id="'Question'+(i-1)" type="radio" v-bind:name="'Question'+(i-1)" value="anscount">
 										<label v-bind:for="'Question'+(i-1)" class="label-ans">
 											<div class="main-oneans">
@@ -76,8 +66,8 @@
 									</template>
 									[[anscount = 1]]
 								</template>
-								<template v-if="questions[i-1].QuestionType == 2">
-									<template v-for="oneans in questions[i-1].Answers">
+								<template v-if="QuestionList.Questions[i-1].QuestionType == 2">
+									<template v-for="oneans in QuestionList.Questions[i-1].Answers">
 										<input class="inp-none" v-bind:id="'Question'+(i-1)" type="checkbox" v-bind:name="'Question'+(i-1)" value=1>
 										<label v-bind:for="'Question'+(i-1)" class="label-ans">
 											<div class="main-oneans">
