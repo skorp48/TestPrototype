@@ -1,6 +1,7 @@
 {
     "Name":"Психологический тест",
     "Description":"Психологический тест на проверку качества",
+    "Image":"/templates/images/Psihologia.jpg",
     "Questions":
     [
         {

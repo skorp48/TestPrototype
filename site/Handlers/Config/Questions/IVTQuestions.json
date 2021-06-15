@@ -1,6 +1,7 @@
 {
     "Name":"Тест на выбор темы для ИВТ",
     "Description":"Тест на выбор темы для ИВТ",
+    "Image": "/templates/images/IVT.jpg",
     "Questions":
     [
         {
