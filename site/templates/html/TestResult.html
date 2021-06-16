@@ -40,29 +40,11 @@
 				</div>
 			</div>
 			<div class="main" style="margin-top: 0px ;">
-				<div class="answer-dist" v-on:click="clickFu(0)">
-					<h2> 1. WEB-разработка </h2>
-					<div class="vkr-theme" v-bind:class="{'vkr-theme-active': clicked[0]}">
-						<h3> 1.1 Сервис тестирования</h3>
-						<p>Сервис для проведения тематический тестов для общего пользования или для обучения</p>
-					</div>
-					<div class="vkr-theme" v-bind:class="{'vkr-theme-active': clicked[0]}">
-						<h3> 1.2 Интернет магазин</h3>
-						<p>Интернет магазин для продажи чего-либо с авторизацией, корзиной, возможностью заказать на адрес и т.п.</p>
-					</div>
-				</div>
-				<div class="answer-dist" v-on:click="clickFu(1)">
-					<h2> 2. Геймдев</h2>
-					<div class="vkr-theme" v-bind:class="{'vkr-theme-active': clicked[1]}">
-						<h3> 2.1 Игра "жизнь"</h3>
-						<p>Разработка симуляции игры "жизнь"</p>
-					</div>
-				</div>
-				<div class="answer-dist" v-on:click="clickFu(2)">
-					<h2> 3. Микроконтроллеры</h2>
-					<div class="vkr-theme" v-bind:class="{'vkr-theme-active': clicked[2]}">
-						<h3> 3.1 Микроконтроллерная программа</h3>
-						<p>Разработка микроконтроллерной программы</p>
+				<div v-for="i in result.length" class="answer-dist" v-on:click="clickFu(i-1)">
+					<h2> [[i]]. [[result.Name]] </h2>
+					<div v-for="j in result.themes.length" class="vkr-theme" v-bind:class="{'vkr-theme-active': clicked[i-1]}">
+						<h3> [[i]].[[j]] [[result.themes[j-1].Name]]</h3>
+						<p>[[result.themes[j-1].Description]]</p>
 					</div>
 				</div>
 			</div>
