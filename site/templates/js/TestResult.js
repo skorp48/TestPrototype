@@ -2,19 +2,23 @@ var application = new Vue({
     el : "#TestResult",
     data :{
         object: [],
-        soloEl: false
+        clicked: [false,false,false]
     },
     delimiters: ['[[', ']]'],
     methods: {
-        fetchObject : function(){
-            axios.post('/fetchobj').then (function(response){
-                application.object = response.data;
-            });
+        clickFu:function(num){
+            this.$set(this.clicked, num, !this.clicked[num])
         }
-    },
-    created: function () {
-        this.fetchObject();
+
+        // fetchObject : function(){
+        //     axios.post('/fetchobj').then (function(response){
+        //         application.object = response.data;
+        //     });
+        // }
     }
+    // created: function () {
+    //     this.fetchObject();
+    // }
 })
 
     // параллакс

@@ -1008,7 +1008,11 @@ button:hover{
 .vkr-theme{
 	padding-left: 50px;
 	border-bottom: 1px solid #989898;
-	/*display: none;*/
+	display: none;
+}
+
+.vkr-theme-active{
+	display: block !important;
 }
 .vkr-theme:last-child{
 	border-bottom: none;
