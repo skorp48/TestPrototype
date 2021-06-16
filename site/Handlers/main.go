@@ -7,6 +7,8 @@ import (
 	"html/template"
 	"net/http"
 	"os"
+	"strconv"
+	"strings"
 )
 
 var Link *string
@@ -40,12 +42,8 @@ type QuestionsList struct {
 	Name        string     `json:"Name"`
 	Description string     `json:"Description"`
 	Image       string     `json:"Image"`
+	Object      []string   `json:"object"`
 	Questions   []Question `json:"Questions"`
-}
-
-type edObject struct {
-	Name   string   `json:"Name"`
-	Object []string `json:"object"`
 }
 
 func decodeJSON(filename string, v interface{}) {
@@ -68,7 +66,7 @@ func showSnippet(w http.ResponseWriter, r *http.Request) (*string, error) {
 	if q == "" {
 		http.NotFound(w, r)
 		fmt.Println("123")
-		return nil, errors.New("Not Found")
+		return nil, errors.New("not found")
 	}
 	return &q, nil
 }
@@ -119,25 +117,46 @@ func SendObj(w http.ResponseWriter, r *http.Request) {
 }
 
 func testCalc(w http.ResponseWriter, r *http.Request) {
-	var ObjectList edObject
-	decodeJSON("site/Handlers/Config/Questions/IVTQuestions.json", &ObjectList)
-	fmt.Println(ObjectList)
-
-	ObjectMap := make(map[string]int)
-
-	for _, v := range ObjectList.Object {
-		ObjectMap[v] = 5645
-	}
-	fmt.Println(ObjectMap["webasdasd"])
 
 	var Questions QuestionsList
 	decodeJSON("site/Handlers/Config/Questions/IVTQuestions.json", &Questions)
 
-	r.ParseForm()
-	// for i, v := range r.Form {
-	// 	fmt.Println(i, v)
-	// }
+	ObjectMap := make(map[string]int)
+	for _, v := range Questions.Object {
 
+		ObjectMap[v] = 0
+	}
+	fmt.Printf("ObjectMap: %v\n", ObjectMap)
+
+	var AnswerID []string
+	var Answer []string
+
+	r.ParseForm()
+	fmt.Printf("r.Form: %v\n", r.Form)
+	for i, v := range r.Form {
+		fmt.Printf("v: %v\n", v)
+		fmt.Printf("i: %v\n", i)
+		words := strings.Split(i, "_")
+		if len(words) == 2 {
+			AnswerID = append(AnswerID, words[0])
+			Answer = append(Answer, words[1])
+		} else {
+			AnswerID = append(AnswerID, words[0])
+			Answer = append(Answer, v[0])
+		}
+	}
+
+	fmt.Printf("AnswerID: %v\n", AnswerID)
+	fmt.Printf("Answer: %v\n", Answer)
+
+	for _, v := range AnswerID {
+		int_v, _ := strconv.Atoi(v)
+		int_answer, _ := strconv.Atoi(Answer[int_v])
+		for _, val := range Questions.Questions[int_v].Weights[int_answer] {
+			ObjectMap[val] += 1
+		}
+	}
+	fmt.Printf("ObjectMap: %v\n", ObjectMap)
 	temp, err := template.ParseFiles("site/templates/html/TestResult.html")
 	if err != nil {
 		fmt.Println(err)
