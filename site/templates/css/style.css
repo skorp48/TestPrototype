@@ -988,3 +988,28 @@ button:hover{
 .inp-file-none{
 	display: none;
 }
+
+.answer-dist{
+	margin-bottom: 15px;
+	padding-left: 50px;
+	border: 1px solid #989898;
+	border-radius: 10px;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: bold;
+	color: #383838;
+}
+
+.answer-dist:hover{
+	background-color: #3D3BFF;
+	color:white;
+}
+
+.vkr-theme{
+	padding-left: 50px;
+	border-bottom: 1px solid #989898;
+	/*display: none;*/
+}
+.vkr-theme:last-child{
+	border-bottom: none;
+}

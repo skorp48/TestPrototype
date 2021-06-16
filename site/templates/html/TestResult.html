@@ -7,29 +7,63 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<body class="prep">
-	<header class="Header">
-		<div>
-			<span>Isotope Tests</span>	
-		</div>
-		<H2>
-			Ваши результаты
-		</H2>
-		<div>
-			<div class="Header-image">
-				<div class="Header-image-filter"></div>
-			</div>		
-		</div>
-	</header>
-	<section>
-		<div class="main main-kurs-edit">
-			<div class="main-head"> 
-				<div>
-					<a href="/">
-						<img src="/templates/images/Arrow 1.png" alt="">
-						На главную
-					</a>
+
+<div id="TestResult">
+	<body class="prep">
+		<header class="Header">
+			<div>
+				<span>Isotope Tests</span>	
+			</div>
+			<H2>
+				Ваши результаты
+			</H2>
+			<div>
+				<div class="Header-image">
+					<div class="Header-image-filter"></div>
+				</div>		
+			</div>
+		</header>
+		<section>
+			<div class="main main-kurs-edit" style="margin-bottom: 30px;">
+				<div class="main-head"> 
+					<div>
+						<a href="/">
+							<img src="/templates/images/Arrow 1.png" alt="">
+							На главную
+						</a>
+					</div>
+				</div>
+				<div class="main-head-bottom"> 
+					<div>
+						<h2>Рассмотрите предложенные темы:</h2>
+					</div>
 				</div>
 			</div>
-</body>
+			<div class="main" style="margin-top: 0px ;">
+				<div class="answer-dist">
+					<h2> 1. WEB-разработка</h2>
+					<div class="vkr-theme">
+						<h3> 1.1 Сервис тестирования</h3>
+						<p>Сервис для проведения тематический тестов для общего пользования или для обучения</p>
+					</div>
+					<div class="vkr-theme">
+						<h3> 1.2 Интернет магазин</h3>
+						<p>Интернет магазин для продажи чего-либо с авторизацией, корзиной, возможностью заказать на адрес и т.п.</p>
+					</div>
+				</div>
+				<div class="answer-dist">
+					<h2> 2. Геймдев</h2>
+					<div class="vkr-theme">
+						<h3> 2.1 Игра "жизнь"</h3>
+						<p>Разработка симуляции игры "жизнь"</p>
+					</div>
+				</div>
+				<div class="answer-dist">
+					<h2> 3. Микроконтроллеры</h2>
+				</div>
+			</div>
+		</section>
+	</body>
+</div>
+<script src="/templates/js/TestResult.js"></script>
 </html>

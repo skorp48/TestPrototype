@@ -44,7 +44,7 @@
 								<img v-if="value.Image !=''" v-bind:src="value.Image" alt="Картинка вопроса">
 								<template v-if="value.QuestionType == 1">
 									<template v-for="(oneans, indexans) in value.Answers">
-										<input class="inp-none" v-bind:id="'Question'+index+indexans" type="radio" v-bind:name="'Question'+index" v-bind:value="indexans">
+										<input class="inp-none" v-bind:id="'Question'+index+indexans" type="radio" v-bind:name="index" v-bind:value="indexans">
 										<label v-bind:for="'Question'+index+indexans" class="label-ans">
 											<div class="main-oneans">
 												<div>
@@ -56,7 +56,7 @@
 								</template>
 								<template v-if="value.QuestionType == 2">
 									<template v-for="(oneans, indexans in value.Answers">
-										<input class="inp-none" v-bind:id="'Question'+index+indexans" type="checkbox" v-bind:name="'Question'+index+'_'+indexans" value=1>
+										<input class="inp-none" v-bind:id="'Question'+index+indexans" type="checkbox" v-bind:name="index+'_'+indexans" value=1>
 										<label v-bind:for="'Question'+index+indexans" class="label-ans">
 											<div class="main-oneans">
 												<div>
