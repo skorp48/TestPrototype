@@ -29,11 +29,11 @@ type QConfig struct {
 }
 
 type Question struct {
-	Question     string   `json:"Question"`
-	QuestionType int      `json:"QuestionType"`
-	Image        string   `json:"Image"`
-	Answers      []string `json:"Answers"`
-	Weights      []int    `json:"Weights"`
+	Question     string     `json:"Question"`
+	QuestionType int        `json:"QuestionType"`
+	Image        string     `json:"Image"`
+	Answers      []string   `json:"Answers"`
+	Weights      [][]string `json:"Weights"`
 }
 
 type QuestionsList struct {
@@ -41,6 +41,11 @@ type QuestionsList struct {
 	Description string     `json:"Description"`
 	Image       string     `json:"Image"`
 	Questions   []Question `json:"Questions"`
+}
+
+type edObject struct {
+	Name   string   `json:"Name"`
+	Object []string `json:"object"`
 }
 
 func decodeJSON(filename string, v interface{}) {
@@ -114,7 +119,24 @@ func SendObj(w http.ResponseWriter, r *http.Request) {
 }
 
 func testCalc(w http.ResponseWriter, r *http.Request) {
+	var ObjectList edObject
+	decodeJSON("site/Handlers/Config/Questions/IVTQuestions.json", &ObjectList)
+	fmt.Println(ObjectList)
+
+	ObjectMap := make(map[string]int)
+
+	for _, v := range ObjectList.Object {
+		ObjectMap[v] = 5645
+	}
+	fmt.Println(ObjectMap["webasdasd"])
+
+	var Questions QuestionsList
+	decodeJSON("site/Handlers/Config/Questions/IVTQuestions.json", &Questions)
+
 	r.ParseForm()
+	// for i, v := range r.Form {
+	// 	fmt.Println(i, v)
+	// }
 
 	temp, err := template.ParseFiles("site/templates/html/TestResult.html")
 	if err != nil {

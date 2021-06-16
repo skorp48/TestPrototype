@@ -18,7 +18,7 @@
             ],
             "Weights":
             [
-                1,2,3,4,5
+                ["web","Ai"],["web"],["micro","Game"],["web","Game"],["micro"]
             ]
         },
         {
@@ -33,7 +33,7 @@
             ],
             "Weights":
             [
-                1,2,0
+                ["micro","Game","Ai"], ["web"],["none"]
             ]
         },
         {
@@ -48,7 +48,7 @@
             ],
             "Weights":
             [
-                1,2,0
+                ["web","Game","Ai"], ["micro"],["none"]
             ]
         },
         {
@@ -64,7 +64,7 @@
             ],
             "Weights":
             [
-                1,2,3,0
+                ["Ai", "Game"], ["web","Game"],["Ai"],["none"]
             ]
         },
         {
@@ -79,7 +79,7 @@
             ],
             "Weights":
             [
-                1,2,5
+                ["none"],["none"],["none"]
             ]
         }
     ]
