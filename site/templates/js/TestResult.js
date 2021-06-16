@@ -2,7 +2,7 @@ var application = new Vue({
     el : "#TestResult",
     data :{
         result: [],
-        clicked: [false,false,false]
+        clicked: []
     },
     delimiters: ['[[', ']]'],
     methods: {
@@ -13,10 +13,16 @@ var application = new Vue({
             axios.post('/fetchres').then (function(response){
                 application.result = response.data;
             });
+        },
+        ClickCount : function(){
+            this.result.length
+            for (let index = 1; index < this.result.length; index++) {
+                clicked.push(false)
+            }
         }
     },
     created: function () {
-        this.fetchObject();
+        this.fetchResult();
     }
 })
 

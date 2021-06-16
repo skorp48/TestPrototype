@@ -41,10 +41,10 @@
 			</div>
 			<div class="main" style="margin-top: 0px ;">
 				<div v-for="i in result.length" class="answer-dist" v-on:click="clickFu(i-1)">
-					<h2> [[i]]. [[result.Name]] </h2>
-					<div v-for="j in result.themes.length" class="vkr-theme" v-bind:class="{'vkr-theme-active': clicked[i-1]}">
-						<h3> [[i]].[[j]] [[result.themes[j-1].Name]]</h3>
-						<p>[[result.themes[j-1].Description]]</p>
+					<h2> [[i]]. [[result[i-1].Name]] </h2>
+					<div v-for="j in result[i-1].themes.length" class="vkr-theme" v-bind:class="{'vkr-theme-active': clicked[i-1]}">
+						<h3> [[i]].[[j]] [[result[i-1].themes[j-1].Name]]</h3>
+						<p>[[result[i-1].themes[j-1].Description]]</p>
 					</div>
 				</div>
 			</div>

@@ -12,6 +12,7 @@ import (
 )
 
 var Link *string
+var ResThem []Result
 
 // Тело запроса с сервера
 type requsetBody struct {
@@ -44,6 +45,17 @@ type QuestionsList struct {
 	Image       string     `json:"Image"`
 	Object      []string   `json:"object"`
 	Questions   []Question `json:"Questions"`
+}
+
+type ResultThemes struct {
+	Name        string `json:"Name"`
+	Description string `json:"Description"`
+}
+
+type Result struct {
+	Type   string         `json:"type"`
+	Name   string         `json:"Name"`
+	Themes []ResultThemes `json:"themes"`
 }
 
 func decodeJSON(filename string, v interface{}) {
@@ -149,19 +161,54 @@ func testCalc(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("AnswerID: %v\n", AnswerID)
 	fmt.Printf("Answer: %v\n", Answer)
 
-	for _, v := range AnswerID {
+	for i, v := range AnswerID {
 		int_v, _ := strconv.Atoi(v)
-		int_answer, _ := strconv.Atoi(Answer[int_v])
+		int_answer, _ := strconv.Atoi(Answer[i])
 		for _, val := range Questions.Questions[int_v].Weights[int_answer] {
 			ObjectMap[val] += 1
 		}
 	}
 	fmt.Printf("ObjectMap: %v\n", ObjectMap)
+
+	max := 0
+	for Key, v := range ObjectMap {
+		if v > max && Key != "none" {
+			max = v
+		}
+	}
+
+	var themes []string
+	for Key, v := range ObjectMap {
+		if v == max {
+			themes = append(themes, Key)
+		}
+	}
+
+	fmt.Println(themes)
+
+	var ResThemJS []Result
+	decodeJSON("site/Handlers/Config/MainConfig/IVTThemes.json", &ResThemJS)
+	for _, v := range ResThemJS {
+		for _, val := range themes {
+			if v.Type == val {
+				ResThem = append(ResThem, v)
+			}
+		}
+	}
+
+	fmt.Println(ResThem)
+
 	temp, err := template.ParseFiles("site/templates/html/TestResult.html")
 	if err != nil {
 		fmt.Println(err)
 	}
 	temp.Execute(w, nil)
+}
+
+func fetchResult(w http.ResponseWriter, r *http.Request) {
+	encoder := json.NewEncoder(w)
+	encoder.Encode(ResThem)
+	ResThem = nil
 }
 
 func main() {
@@ -171,5 +218,6 @@ func main() {
 	http.HandleFunc("/fetchQuestions", fetchQuestions)
 	http.HandleFunc("/Questions", TestWorkHand)
 	http.HandleFunc("/testcalc", testCalc)
+	http.HandleFunc("/fetchres", fetchResult)
 	http.ListenAndServe(":5000", nil)
 }
